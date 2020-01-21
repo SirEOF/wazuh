@@ -325,9 +325,6 @@ def get_agent_groups(group_list=None, offset=0, limit=None, sort_by=None, sort_a
     # Group names
     for group_id in group_list:
         try:
-            # Check if the group exists
-            if group_id not in group_list:
-                raise WazuhError(1710)
             full_entry = path.join(common.shared_path, group_id)
 
             # Get the id of the group
