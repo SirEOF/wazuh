@@ -56,6 +56,10 @@ static int read_sys_file(const char *file_name, int depth)
         ssize_t nr;
         long int total = 0;
 
+/* On Windows the result of read the file may no match file size.
+For this reason, following check doesn't work on Windows */
+#ifndef WIN32
+
         fd = open(file_name, O_RDONLY, 0);
 
         /* It may not necessarily open */
@@ -83,6 +87,7 @@ static int read_sys_file(const char *file_name, int depth)
                 }
             }
         }
+#endif
     }
 
     /* If has OTHER write and exec permission, alert */
